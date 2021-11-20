@@ -16,11 +16,11 @@ class ReversibleConv2d(nn.Module):
             blocks.append(
                 rv.ReversibleBlock(
                     nn.Sequential(
-                        nn.Conv2d(channels, channels, 3, padding=1, groups=groups),
+                        nn.Conv2d(channels, channels, 3, padding=1, groups=groups, padding_mode="replicate"),
                         nn.GELU(),
                     ),
                     nn.Sequential(
-                        nn.Conv2d(channels, channels, 3, padding=1, groups=groups),
+                        nn.Conv2d(channels, channels, 3, padding=1, groups=groups, padding_mode="replicate"),
                         nn.GELU(),
                     ),
                     split_along_dim=1
